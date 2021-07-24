@@ -4,7 +4,7 @@ import mongoose from "mongoose";
 
 import mrouter from "./routes/mentorAPI.js";
 
-// import srouter from "./routes/studentAPI.js";
+import srouter from "./routes/studentAPI.js";
 
 const PORT = process.env.PORT || 5000;
 
@@ -17,13 +17,6 @@ app.get("/",(req,res)=>{res.send("good afternoon !!!!")});
 app.listen(PORT,console.log("server started"));
 
 
-
-// mongoose testing starts here
-
-// mongodb://localhost/userlist
-// new url from mongo atlas (cluster > connect > connect your application > copy string)
-// change password and change database name to userlist in last block of new url, after slash
-
 const url="mongodb+srv://SabarishE:sabarishe@cluster0.eeimf.mongodb.net/msportal"
 
 
@@ -32,19 +25,14 @@ const url="mongodb+srv://SabarishE:sabarishe@cluster0.eeimf.mongodb.net/msportal
 mongoose.connect(url,{useNewUrlParser:true});
 
 const con=mongoose.connection;
-  // to check mongoDB is connected or not
+
 con.on("open",()=>console.log("MongoDB in connected"));
 
 
-// router is used to access the DB
 
-// app.get("/",(req,res)=>{
-// res.send("heroku test petta");
-// console.log("Heroku to be deployed");
-//   })
 
 app.use("/mentors",mrouter);
-// app.use("/students",srouter);
-// app.use("/users",router);
+app.use("/students",srouter);
+
   
 

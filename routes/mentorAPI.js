@@ -15,7 +15,7 @@ mrouter.get("/",async(req,res)=>{
 
 // CREATE mentor
 
-mrouter.post("/",async(req,res)=>{
+mrouter.post("/addmentor",async(req,res)=>{
 
     const addmentor=req.body ;
     console.log("new mentor entry >>>",addmentor);
@@ -34,14 +34,14 @@ mrouter.post("/",async(req,res)=>{
   
   })
 
-  // Asign student to mentor (update - PATCH)
-//mentor name is the query
-mrouter.patch('/:name', (req, res) => {
+// Asign student(s) to mentor (update - PATCH)
+
+mrouter.patch('/addstudent/:name', (req, res) => {
 
 
     Mentor.findOneAndUpdate(
        {name:req.params.name}, 
-        {$push: {students :"new-comer"}} 
+        {$push: {students :[...(req.body.students)]}} 
     ,{new: true}
         )
     
@@ -60,9 +60,37 @@ mrouter.patch('/:name', (req, res) => {
     })
 })
 
+// Remove student(s) for a  mentor (update - PATCH)
+
+
+
+mrouter.patch('/removestudent/:name', (req, res) => {
+
+
+    Mentor.findOneAndUpdate(
+       {name:req.params.name}, 
+        {$pull: {students :{$in: [...(req.body.students)]}}} 
+    ,{new: true}
+        )
+    
+    .then((m) => {
+        if (!m) {
+            return res.status(404).send();
+        }
+        else{
+            res.send(m);
+            console.log(" student removed for this mentor !!!",m)
+        }
+        
+    }).catch((error) => {
+        res.status(500).send(error);
+        console.log("error in removing student",error)
+    })
+})
+
+
+
 //get mentor by name
-
-
 
 mrouter.get('/:name', (req, res) => {
 
@@ -83,22 +111,5 @@ mrouter.get('/:name', (req, res) => {
         console.log("error in finding mentor !!!!")
     })
 })
-
-
-
-
-
-
-// mrouter.patch('/:name', (req, res) => {
-//     Blog.findByIdAndUpdate(req.params.id, req.body, {new: true}).then((blog) => {
-//         if (!blog) {
-//             return res.status(404).send();
-//         }
-//         res.send(blog);
-//     }).catch((error) => {
-//         res.status(500).send(error);
-//     })
-// })
-
 
 export default mrouter;
