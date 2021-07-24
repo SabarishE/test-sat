@@ -25,7 +25,7 @@ app.listen(PORT,console.log("server started"));
 // change password and change database name to userlist in last block of new url, after slash
 
 // const url="mongodb+srv://SabarishE:sabarishe@cluster0.eeimf.mongodb.net/msportal"
-// const url= process.env.MONGODB_URI || "mongodb://localhost/msportal";
+const url= process.env.MONGODB_URI || "mongodb://localhost/msportal";
 
 mongoose.connect(url,{useNewUrlParser:true});
 
@@ -37,7 +37,7 @@ con.on("open",()=>console.log("MongoDB in connected"));
 // router is used to access the DB
 
 app.get("/",(req,res)=>{
-res.send("heroku test");
+res.send("heroku test petta");
 console.log("Heroku to be deployed");
   })
 
