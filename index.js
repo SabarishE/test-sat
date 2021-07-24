@@ -6,13 +6,13 @@ import mrouter from "./routes/mentorAPI.js";
 
 // import srouter from "./routes/studentAPI.js";
 
-const PORT = process.env.PORT || 5001;
+const PORT = process.env.PORT || 5000;
 
 const app=express();
 
 app.use(express.json());
 // testing
-app.get("/",(req,res)=>{res.send("hi chieffffff !!!!")});
+app.get("/",(req,res)=>{res.send("good afternoon !!!!")});
 
 app.listen(PORT,console.log("server started"));
 
