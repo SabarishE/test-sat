@@ -24,8 +24,8 @@ app.listen(PORT,console.log("server started"));
 // new url from mongo atlas (cluster > connect > connect your application > copy string)
 // change password and change database name to userlist in last block of new url, after slash
 
-// const url="mongodb+srv://SabarishE:sabarishe@cluster0.eeimf.mongodb.net/msportal"
-const url= process.env.MONGODB_URI || "mongodb://localhost/msportal";
+ const url="mongodb+srv://SabarishE:sabarishe@cluster0.eeimf.mongodb.net/msportal"
+// const url= process.env.MONGODB_URI || "mongodb://localhost/msportal";
 
 mongoose.connect(url,{useNewUrlParser:true});
 
