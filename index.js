@@ -36,10 +36,10 @@ con.on("open",()=>console.log("MongoDB in connected"));
 
 // router is used to access the DB
 
-app.get("/",(req,res)=>{
-res.send("heroku test petta");
-console.log("Heroku to be deployed");
-  })
+// app.get("/",(req,res)=>{
+// res.send("heroku test petta");
+// console.log("Heroku to be deployed");
+//   })
 
 app.use("/mentors",mrouter);
 // app.use("/students",srouter);
